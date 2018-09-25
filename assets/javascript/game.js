@@ -41,23 +41,43 @@ $(document).ready(function () {
         console.log(fruitArray);    //logs random # for whole array
         console.log(fruitArray[0]); //logs random # for first button
 
-
         // On click of fruit image, take number generated and add it to the total score 
-        $(".fruits").on("click", function () {
-            totalScore = totalScore + getfruitPoints();
+
+        $('#fruit0').on("click", function () {
+            totalScore = totalScore + fruitArray[0];
             $("#totalScore").html(totalScore);
 
-            //when total score equals random number... else if total score is greater than 
-            if (totalScore === randomNumber) {
-                wins++;
-                $("#wins").html(wins);
-                alert("you win!");
-            } else if (totalScore > randomNumber) {
-                losses++;
-                $("#losses").html(losses);
-            }
+        });
+        $('#fruit1').on("click", function () {
+            totalScore = totalScore + fruitArray[1];
+            $("#totalScore").html(totalScore);
 
         });
+        $('#fruit2').on("click", function () {
+            totalScore = totalScore + fruitArray[2];
+            $("#totalScore").html(totalScore);
+
+        });
+        $('#fruit3').on("click", function () {
+            totalScore = totalScore + fruitArray[3];
+            $("#totalScore").html(totalScore);
+
+        });
+
+        //totalScore = totalScore + getfruitPoints();
+        //$("#totalScore").html(totalScore);
+
+        //when total score equals random number... else if total score is greater than 
+        // if (totalScore === randomNumber) {
+        //     wins++;
+        //     $("#wins").html(wins);
+        //     alert("you win!");
+        // } else if (totalScore > randomNumber) {
+        //     losses++;
+        //     $("#losses").html(losses);
+        // }
+
+
     }
     getfruitPoints();
 
