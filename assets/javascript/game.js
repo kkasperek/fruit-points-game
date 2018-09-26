@@ -19,7 +19,7 @@ $(document).ready(function () {
     randomNumber = Math.floor(Math.random() * (120 - 19 + 1)) + 19;
     $("#randomNumber").html(randomNumber);
     console.log(randomNumber);
-    
+
     // function to assign random points to fruits ... 1-12
     function randomPoints() {
         var min = 1;
@@ -27,6 +27,7 @@ $(document).ready(function () {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
     console.log("fruit points: " + randomPoints());
+
 
     // save each fruit as a variable and create array of fruit buttons 
     function getfruitPoints() {
@@ -43,50 +44,61 @@ $(document).ready(function () {
             fruitArray[i] = randomPoints();
         }
         console.log(fruitArray);    //logs random # for whole array
-        console.log(fruitArray[0]); //logs random # for first button
 
         // On click of fruit image, take number generated and add it to the total score 
         // work on this it looks terrible but at least its working 
-       
-       
+
         $('#fruit0').on("click", function () {
             totalScore = totalScore + fruitArray[0];
             $("#totalScore").html(totalScore);
-            console.log(totalScore);
 
+            performCheck();
         });
         $('#fruit1').on("click", function () {
             totalScore = totalScore + fruitArray[1];
             $("#totalScore").html(totalScore);
-            console.log(totalScore);
+
+            performCheck();
         });
         $('#fruit2').on("click", function () {
             totalScore = totalScore + fruitArray[2];
             $("#totalScore").html(totalScore);
-            return totalScore;
+
+            performCheck();
         });
         $('#fruit3').on("click", function () {
             totalScore = totalScore + fruitArray[3];
             $("#totalScore").html(totalScore);
-            return totalScore;
+
+            performCheck();
         });
-         
-         console.log(randomNumber);
-    
-
-        //when total score equals random number... else if total score is greater than 
-        if (totalScore === randomNumber) {
-            wins++;
-            $("#wins").html(wins);
-            alert("you win!");
-        } else if (totalScore > randomNumber) {
-            losses++;
-            $("#losses").html(losses);
-        }
-
 
     }
     getfruitPoints();
+
+    // Reset game if win or loss
+    function reset() {
+        $("#randomNumber").html(randomNumber);
+        totalScore = 0;
+    }
+
+    //when total score equals random number... else if total score is greater than 
+    function performCheck() {
+        if (totalScore === randomNumber) {
+            alert('you win');
+            wins++;
+            $("#wins").text(wins);
+            reset();
+        } else if (totalScore > randomNumber) {
+            alert('you lose');
+            $("#losses").text(losses);
+            losses++;
+            reset();
+        } else {
+            return totalScore;
+        }
+
+    }
 
 
 });
